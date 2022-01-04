@@ -1,38 +1,40 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Login from "../components/Login.vue";
-import register from "../components/register.vue";
-import index from "../components/index.vue";
-Vue.use(VueRouter);
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Login from '../components/Login.vue'
+import register from '../components/register.vue'
+import index from '../components/index.vue'
+Vue.use(VueRouter)
 
-const routes = [{
-    path: "/",
-    name: "Login",
+const routes = [
+  {
+    path: '/',
+    name: 'Login',
     component: Login,
     meta: {
-      title: '登录',
+      title: '登录'
     }
   },
   {
-    path: "/register",
-    name: "register",
-    component: register,
-  }, {
-    path: "/index",
-    name: "index",
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {
+    path: '/index',
+    name: 'index',
     component: index,
     meta: {
       title: '首页',
       requireAuth: true
     }
   }
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
 router.beforeEach((to, from, next) => {
   /* 页面title */
@@ -43,25 +45,25 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
     var EXPIRESTIME = '6000000'
     let token = localStorage.getItem('token')
-    token = JSON.parse(token);
+    token = JSON.parse(token)
     if (token) {
-      let date = new Date().getTime();
+      const date = new Date().getTime()
       // 如果大于就是过期了，如果小于或等于就还没过期
       if (date - token.startTime > EXPIRESTIME) {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token')
         alert('登录已过期，请重新登录')
         next({
-          path: '/',
+          path: '/'
         })
       }
     } else {
       alert('用户未登录')
       next({
-        path: '/',
+        path: '/'
       })
     }
   }
-  next();
+  next()
 })
 
-export default router;
+export default router

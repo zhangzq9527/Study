@@ -1,27 +1,32 @@
 <template>
   <div>
-    <p>{{ msg }}</p>
+    <p>账号：{{ user }}</p>
+    <p>密码：{{ password }}</p>
     <el-button type="primary" @click="quitLogin()">退出</el-button>
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
-  data() {
-    return {
-      msg: ''
-    }
+  computed: {
+    ...mapState({
+      user: state => state.user.username,
+      password: state => state.user.password
+    })
   },
-  created() {
-    // 页面加载时就从本地通过localstorage获取存储的token值
-    let token = localStorage.getItem('token')
-    token = JSON.parse(token)
-    this.msg = token.value
-  },
+  // created() {
+  //   // 页面加载时就从本地通过localstorage获取存储的token值
+  //   let token = localStorage.getItem('token')
+  //   token = JSON.parse(token)
+  //   this.msg = token.value
+  // },
   methods: {
+    ...mapMutations(['loginOut']),
     quitLogin() {
       alert('已退出登录')
       localStorage.removeItem('token')
-      this.$router.push('/')
+      this.loginOut()
+      // this.$router.push('/')
     }
   }
 }

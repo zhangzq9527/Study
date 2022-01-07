@@ -45,6 +45,7 @@
 </template>
 <script>
 import identify from './identify' // 引入子元素
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
@@ -93,6 +94,7 @@ export default {
     this.makeCode(this.identifyCodes, 4)
   },
   methods: {
+    ...mapMutations(['login']),
     //  下一步按钮 拿到code值跟随机生成的验证码进行对比
     submitLogin() {
       if (this.loginForm.username === '' || this.loginForm.password === '' || this.loginForm.code === '') {
@@ -102,13 +104,16 @@ export default {
         this.$alert('验证码错误')
         this.changeCode() // 改变验证码
       } else if (this.loginForm.username !== '' && this.loginForm.password !== '') {
+        this.login(this.loginForm.username)
         const paramss = {
           name: 'token',
-          value: this.loginForm.username
+          user: this.loginForm.username,
+          password: this.loginForm.password
         }
         var datas = Object.assign(paramss, {
           startTime: new Date().getTime()
         })
+        this.login(JSON.stringify(datas))
         localStorage.setItem('token', JSON.stringify(datas))
         this.$router.push('index')
       } else {

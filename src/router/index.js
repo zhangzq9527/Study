@@ -56,12 +56,13 @@ router.beforeEach((to, from, next) => {
           path: '/'
         })
       }
-    } else {
-      alert('用户未登录')
-      next({
-        path: '/'
-      })
     }
+    // else {
+    //   alert('用户未登录')
+    //   next({
+    //     path: '/'
+    //   })
+    // }
   }
   next()
 })

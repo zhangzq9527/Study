@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   }
   /* 判断该路由是否需要登录权限 */
   if (to.matched.some(record => record.meta.requireAuth)) {
-    var EXPIRESTIME = '6000000'
+    const EXPIRESTIME = '6000000'
     let token = localStorage.getItem('token')
     token = JSON.parse(token)
     if (token) {

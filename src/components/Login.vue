@@ -110,7 +110,7 @@ export default {
           user: this.loginForm.username,
           password: this.loginForm.password
         }
-        var datas = Object.assign(paramss, {
+        const datas = Object.assign(paramss, {
           startTime: new Date().getTime()
         })
         this.login(JSON.stringify(datas))

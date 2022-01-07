@@ -7,10 +7,11 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es6: true,
+    es6: true
   },
   extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   rules: {
+    'no-var': 2,
     'vue/max-attributes-per-line': [
       2,
       {

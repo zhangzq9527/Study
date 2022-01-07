@@ -31,11 +31,11 @@
           prefix-icon="el-icon-key"
         ></el-input>
         <div @click="changeCode()" class="code">
-          <identify :identifyCode="identifyCode"></identify>
+          <identify :identify-code="identifyCode"></identify>
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitLogin()" class="loginbtn">登录</el-button>
+        <el-button typec="primary" @click="submitLogin()" class="loginbtn">登录</el-button>
         <router-link to="/register">
           <el-button type="primary">注册</el-button>
         </router-link>

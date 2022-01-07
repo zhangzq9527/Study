@@ -1,9 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+export default {
   state: {
     user: {
       username: '',
@@ -19,6 +14,4 @@ const store = new Vuex.Store({
       state.user.username = ''
     }
   }
-})
-
-export default store
+}

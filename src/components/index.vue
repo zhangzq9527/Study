@@ -10,8 +10,8 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      user: state => state.user.username,
-      password: state => state.user.password
+      user: state => state.Login.user.username,
+      password: state => state.Login.user.password
     })
   },
   // created() {

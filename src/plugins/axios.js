@@ -17,11 +17,11 @@ const config = {
 const _axios = axios.create(config)
 
 _axios.interceptors.request.use(
-  function(config) {
+  config => {
     // Do something before request is sent
     return config
   },
-  function(error) {
+  error => {
     // Do something with request error
     return Promise.reject(error)
   }
@@ -29,17 +29,17 @@ _axios.interceptors.request.use(
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-  function(response) {
+  response => {
     // Do something with response data
     return response
   },
-  function(error) {
+  error => {
     // Do something with response error
     return Promise.reject(error)
   }
 )
 
-Plugin.install = function(Vue, options) {
+Plugin.install = (Vue, options) => {
   Vue.axios = _axios
   window.axios = _axios
   Object.defineProperties(Vue.prototype, {

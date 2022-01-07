@@ -108,13 +108,12 @@ export default {
         const paramss = {
           name: 'token',
           user: this.loginForm.username,
-          password: this.loginForm.password
-        }
-        const datas = Object.assign(paramss, {
+          password: this.loginForm.password,
           startTime: new Date().getTime()
-        })
-        this.login(JSON.stringify(datas))
-        localStorage.setItem('token', JSON.stringify(datas))
+        }
+        this.login(JSON.stringify(paramss))
+        localStorage.setItem('token', JSON.stringify(paramss))
+        console.log(paramss)
         this.$router.push('index')
       } else {
         this.$alert('账号或密码不正确')

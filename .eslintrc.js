@@ -11,6 +11,7 @@ module.exports = {
   },
   extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   rules: {
+    'no-param-reassign': ['error', { props: false}],
     'no-var': 2,
     'vue/max-attributes-per-line': [
       2,

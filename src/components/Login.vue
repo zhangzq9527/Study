@@ -35,7 +35,7 @@
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button typec="primary" @click="submitLogin()" class="loginbtn">登录</el-button>
+        <el-button type="primary" @click="submitLogin()" class="loginbtn">登录</el-button>
         <router-link to="/register">
           <el-button type="primary">注册</el-button>
         </router-link>
@@ -104,14 +104,13 @@ export default {
         this.$alert('验证码错误')
         this.changeCode() // 改变验证码
       } else if (this.loginForm.username !== '' && this.loginForm.password !== '') {
-        this.login(this.loginForm.username)
         const paramss = {
           name: 'token',
           user: this.loginForm.username,
           password: this.loginForm.password,
           startTime: new Date().getTime()
         }
-        this.login(JSON.stringify(paramss))
+        this.login(paramss)
         localStorage.setItem('token', JSON.stringify(paramss))
         console.log(paramss)
         this.$router.push('index')
@@ -128,8 +127,8 @@ export default {
     },
     // 生成一个随机整数  randomNum(0, 10) 0 到 10 的随机整数， 包含 0 和 10
     randomNum(min, max) {
-      max = max + 1
-      return Math.floor(Math.random() * (max - min) + min)
+      const num = max + 1
+      return Math.floor(Math.random() * (num - min) + min)
     },
     // 随机生成验证码字符串
     makeCode(data, len) {

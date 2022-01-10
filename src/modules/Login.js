@@ -7,8 +7,8 @@ export default {
   },
   mutations: {
     login(state, payload) {
-      state.user.username = JSON.parse(payload).user
-      state.user.password = JSON.parse(payload).password
+      state.user.username = payload.user
+      state.user.password = payload.password
     },
     loginOut(state) {
       state.user.username = ''

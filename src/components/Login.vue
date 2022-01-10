@@ -98,10 +98,19 @@ export default {
     //  下一步按钮 拿到code值跟随机生成的验证码进行对比
     submitLogin() {
       if (this.loginForm.username === '' || this.loginForm.password === '' || this.loginForm.code === '') {
-        this.$alert('必填项不能为空')
+        this.$message({
+          message: '必填项不能为空',
+          type: 'warning',
+          showClose: true,
+          center: true
+        })
       } else if (this.identifyCode !== this.loginForm.code) {
         this.loginForm.code = ''
-        this.$alert('验证码错误')
+        this.$message.error({
+          message: '验证码错误',
+          showClose: true,
+          center: true
+        })
         this.changeCode() // 改变验证码
       } else if (this.loginForm.username !== '' && this.loginForm.password !== '') {
         const paramss = {
@@ -115,7 +124,11 @@ export default {
         console.log(paramss)
         this.$router.push('index')
       } else {
-        this.$alert('账号或密码不正确')
+        this.$message.error({
+          message: '账号密码不正确',
+          showClose: true,
+          center: true
+        })
         this.loginForm.code = ''
         this.changeCode()
       }

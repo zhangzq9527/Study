@@ -23,7 +23,12 @@ export default {
   methods: {
     ...mapMutations(['loginOut']),
     quitLogin() {
-      alert('已退出登录')
+      this.$message({
+        message: '已退出登录',
+        type: 'success',
+        showClose: true,
+        center: true
+      })
       localStorage.removeItem('token')
       this.loginOut()
       // this.$router.push('/')

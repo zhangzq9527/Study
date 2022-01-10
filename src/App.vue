@@ -5,22 +5,28 @@
 </template>
 
 <script>
+import { timeOptions } from '../src/config/config'
 export default {
   data() {
     return {
       lastTime: null, // 最后一次点击的时间
-      currentTime: null, // 当前点击的时间
-      timeOut: 6000000 // 设置超时时间： 15分钟
+      currentTime: null // 当前点击的时间
     }
   },
   methods: {
     handleTime() {
       this.currentTime = new Date().getTime() // 记录这次点击的时间
-      if (this.currentTime - this.lastTime > this.timeOut) {
-        // 判断上次最后一次点击的时间和这次点击的时间间隔是否大于1分钟
-        // 大于1分钟,跳转路由到login页
+      if (this.currentTime - this.lastTime > timeOptions.timeOut) {
+        // 判断上次最后一次点击的时间和这次点击的时间间隔是否大于15分钟
+        // 大于15分钟,跳转路由到login页
         this.lastTime = new Date().getTime()
-        alert('长时间未操作，登陆已过期')
+        this.$message({
+          message: '长时间未操作，登陆已过期',
+          type: 'warning',
+          showClose: true,
+          center: true
+        })
+        localStorage.removeItem('token')
         this.$router.push('/')
       } else {
         this.lastTime = new Date().getTime() // 如果在1分钟内点击，则把这次点击的时间记录覆盖掉之前存的最后一次点击的时间

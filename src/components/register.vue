@@ -138,9 +138,19 @@ export default {
         this.registerForm.checkpassword === '' ||
         this.registerForm.email === ''
       ) {
-        this.$alert('必填项不能为空')
+        this.$message({
+          message: '必填项不能为空',
+          type: 'warning',
+          showClose: true,
+          center: true
+        })
       } else {
-        this.$alert('注册成功')
+        this.$message({
+          message: '注册成功',
+          type: 'success',
+          showClose: true,
+          center: true
+        })
         this.$router.push('/')
       }
     }

@@ -51,7 +51,12 @@ router.beforeEach((to, from, next) => {
       // 如果大于就是过期了，如果小于或等于就还没过期
       if (date - token.startTime > EXPIRESTIME) {
         localStorage.removeItem('token')
-        alert('登录已过期，请重新登录')
+        this.$message({
+          message: '登录已过期，请重新登录',
+          type: 'warning',
+          showClose: true,
+          center: true
+        })
         next({
           path: '/'
         })

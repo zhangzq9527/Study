@@ -31,7 +31,7 @@
           prefix-icon="el-icon-key"
         ></el-input>
         <div @click="changeCode()" class="code">
-          <identify :identify-code="identifyCode"></identify>
+          <SIdentify :identify-code="identifyCode"></SIdentify>
         </div>
       </el-form-item>
       <el-form-item>
@@ -44,13 +44,13 @@
   </div>
 </template>
 <script>
-import identify from './identify' // 引入子元素
+import SIdentify from './Identify' // 引入子元素
 import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
   components: {
-    identify
+    SIdentify
   },
   data() {
     return {
@@ -122,6 +122,12 @@ export default {
         this.login(paramss)
         localStorage.setItem('token', JSON.stringify(paramss))
         console.log(paramss)
+        this.$message({
+          message: '登录成功',
+          type: 'success',
+          showClose: true,
+          center: true
+        })
         this.$router.push('index')
       } else {
         this.$message.error({

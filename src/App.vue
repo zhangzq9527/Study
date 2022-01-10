@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { timeOptions } from '../src/config/config'
+import { timeOptions } from './config/Config'
 export default {
   data() {
     return {

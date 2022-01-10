@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
-import register from '../components/register.vue'
-import index from '../components/index.vue'
+import register from '../components/Register.vue'
+import index from '../components/Index.vue'
 Vue.use(VueRouter)
 
 const routes = [
